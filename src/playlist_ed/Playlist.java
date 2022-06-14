@@ -35,15 +35,15 @@ public class Playlist {
             }
         }
     }
-    /*
+    
     public void ordenarXFecha(){
         Cancion aux;
         for (int i = 1; i < listacanciones.length; i++) {
             aux = listacanciones[i];
-            for (int j = i-1; j >=0 && array[j]>aux; j--) {
-                array[j+1]=array[j];
-                array[j]=aux;
+            for (int j = i-1; j >=0 && listacanciones[j].getFecha().compareTo(aux.getFecha())>0; j--) {
+                listacanciones[j+1]=listacanciones[j];
+                listacanciones[j]=aux;
             }
         }
-    }*/
+    }
 }

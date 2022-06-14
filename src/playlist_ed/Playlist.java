@@ -13,6 +13,8 @@ public class Playlist {
         listacanciones=nuevalistacanciones;
     }
     public void eliminarCancion(int index){}
+    
+    
     public void ordenarXNombre(){
         Cancion aux;
         for (int i = 1; i < listacanciones.length; i++) {
@@ -22,17 +24,18 @@ public class Playlist {
                 listacanciones[j]=aux;
             }
         }
-    }/*
+    }
     public void ordenarXDuracion(){
         Cancion aux;
         for (int i = 1; i < listacanciones.length; i++) {
             aux = listacanciones[i];
-            for (int j = i-1; j >=0 && array[j]>aux; j--) {
-                array[j+1]=array[j];
-                array[j]=aux;
+            for (int j = i-1; j >=0 && listacanciones[j].getDuracion()>aux.getDuracion(); j--) {
+                listacanciones[j+1]=listacanciones[j];
+                listacanciones[j]=aux;
             }
         }
     }
+    /*
     public void ordenarXFecha(){
         Cancion aux;
         for (int i = 1; i < listacanciones.length; i++) {

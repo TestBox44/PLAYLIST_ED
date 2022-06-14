@@ -23,7 +23,7 @@ public class PLAYLIST_ED {
         for (Cancion listacancione : p1.listacanciones) {
             System.out.println(listacancione.getNombre());
         }
-        p1.ordenarXDuracion();
+        p1.ordenarXFecha();
         System.out.println("---------------------------------------");
         for (Cancion listacancione : p1.listacanciones) {
             System.out.println(listacancione.getNombre());

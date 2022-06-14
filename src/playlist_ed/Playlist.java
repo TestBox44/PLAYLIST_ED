@@ -1,5 +1,4 @@
 package playlist_ed;
-import java.util.ArrayList; 
 public class Playlist {
     Cancion[] listacanciones;
 
@@ -9,9 +8,7 @@ public class Playlist {
     
     public void agregarCancion(Cancion nuevacancion){
         Cancion[] nuevalistacanciones = new Cancion[listacanciones.length+1];
-        for (int i = 0; i < listacanciones.length; i++) {
-            nuevalistacanciones[i]=listacanciones[i];
-        }
+        System.arraycopy(listacanciones, 0, nuevalistacanciones, 0, listacanciones.length);
         nuevalistacanciones[listacanciones.length]=nuevacancion;
         listacanciones=nuevalistacanciones;
     }

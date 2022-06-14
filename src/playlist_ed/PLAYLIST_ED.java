@@ -1,27 +1,32 @@
 package playlist_ed;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class PLAYLIST_ED {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
+        
+        SimpleDateFormat format1 = new SimpleDateFormat("MM/dd/yyyy");
+        
         Playlist p1=new Playlist();
-        Date d1 = new Date("04/02/2010");
+        Date d1 = format1.parse("04/02/2010");
         Cancion c1=new Cancion("Niña Bonita",3.0f,d1);
-        Date d2 = new Date("01/03/2005");
+        Date d2 = format1.parse("01/03/2005");
         Cancion c2=new Cancion("Cholo soy",3.5f,d2);
-        Date d3 = new Date("10/11/2020");
+        Date d3 = format1.parse("10/11/2020");
         Cancion c3=new Cancion("That's Life",4f,d3);
         p1.agregarCancion(c1);
         p1.agregarCancion(c2);
         p1.agregarCancion(c3);
-        for (int i = 0; i < p1.listacanciones.length; i++) {
-            System.out.println(p1.listacanciones[i].getNombre());
+        for (Cancion listacancione : p1.listacanciones) {
+            System.out.println(listacancione.getNombre());
         }
         p1.ordenarXNombre();
         System.out.println("---------------------------------------");
-        for (int i = 0; i < p1.listacanciones.length; i++) {
-            System.out.println(p1.listacanciones[i].getNombre());
+        for (Cancion listacancione : p1.listacanciones) {
+            System.out.println(listacancione.getNombre());
         }
     }
     

@@ -20,14 +20,8 @@ public class PLAYLIST_ED {
         p1.agregarCancion(c1);
         p1.agregarCancion(c2);
         p1.agregarCancion(c3);
-        for (Cancion listacancione : p1.listacanciones) {
-            System.out.println(listacancione.getNombre());
-        }
-        p1.ordenarXFecha();
-        System.out.println("---------------------------------------");
-        for (Cancion listacancione : p1.listacanciones) {
-            System.out.println(listacancione.getNombre());
-        }
+        
+        p1.mostrarCanciones();
     }
     
 }

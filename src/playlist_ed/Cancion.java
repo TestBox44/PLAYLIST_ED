@@ -39,5 +39,10 @@ public class Cancion {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
+
+    @Override
+    public String toString() {
+        return "nombre=" + nombre + ", duracion=" + duracion + ", fecha=" + fecha;
+    }
        
 }

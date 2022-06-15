@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
@@ -17,6 +18,8 @@ public class MainFrame extends javax.swing.JFrame {
         initComponents();
         //Configuraciones visuales
         this.setLocationRelativeTo(null);
+        ImageIcon icon=new ImageIcon(getClass().getResource("/images/corchea_image.png"));
+        this.setIconImage(icon.getImage());
         UIManager.getDefaults().put("TableHeader.cellBorder" , BorderFactory.createEmptyBorder(0,0,0,0));
         ListaDePlayLists.getTableHeader().setOpaque(false);
         ListaDePlayLists.getTableHeader().setBackground(Color.WHITE);

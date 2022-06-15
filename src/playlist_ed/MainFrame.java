@@ -21,10 +21,10 @@ public class MainFrame extends javax.swing.JFrame {
         ImageIcon icon=new ImageIcon(getClass().getResource("/images/corchea_image.png"));
         this.setIconImage(icon.getImage());
         UIManager.getDefaults().put("TableHeader.cellBorder" , BorderFactory.createEmptyBorder(0,0,0,0));
-        ListaDePlayLists.getTableHeader().setOpaque(false);
         ListaDePlayLists.getTableHeader().setBackground(Color.WHITE);
-        ListaDeCanciones.getTableHeader().setOpaque(false);
+        ListaDePlayLists.getTableHeader().setOpaque(true);
         ListaDeCanciones.getTableHeader().setBackground(Color.WHITE);
+        ListaDeCanciones.getTableHeader().setOpaque(true);
         jScrollPane1.setBorder(null);
         jScrollPane1.getViewport().setBackground(Color.WHITE);
         jScrollPane2.setBorder(null);

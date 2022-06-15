@@ -1,30 +1,35 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package playlist_ed;
 
 import java.awt.Color;
 import javax.swing.BorderFactory;
-import javax.swing.JLabel;
 import javax.swing.UIManager;
+import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author USER
- */
+
 public class MainFrame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MainFrame
-     */
+    Playlist[] playlistsDeEjemplo;
+    
+    
     public MainFrame() {
         initComponents();
+        //Configuraciones visuales
         this.setLocationRelativeTo(null);
         UIManager.getDefaults().put("TableHeader.cellBorder" , BorderFactory.createEmptyBorder(0,0,0,0));
         ListaDePlayLists.getTableHeader().setOpaque(false);
         ListaDePlayLists.getTableHeader().setBackground(Color.WHITE);
+        ListaDeCanciones.getTableHeader().setOpaque(false);
+        ListaDeCanciones.getTableHeader().setBackground(Color.WHITE);
         jScrollPane1.setBorder(null);
+        jScrollPane2.setBorder(null);
+        
+        
+        //Creacion de las PlayList
+        playlistsDeEjemplo=new Playlist[3];
+        playlistsDeEjemplo[0]=new Playlist("PlayList1");
+        playlistsDeEjemplo[1]=new Playlist("PlayList2");
+        playlistsDeEjemplo[2]=new Playlist("PlayList3");
+        actualizarVistaListaPlayList(playlistsDeEjemplo);   
     }
 
     /**
@@ -44,6 +49,10 @@ public class MainFrame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         ListaDePlayLists = new javax.swing.JTable();
         PanelListaDeCanciones = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        ListaDeCanciones = new javax.swing.JTable();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Playlist");
@@ -100,14 +109,14 @@ public class MainFrame extends javax.swing.JFrame {
         jScrollPane1.setOpaque(false);
 
         ListaDePlayLists.setBackground(new java.awt.Color(255, 255, 255));
-        ListaDePlayLists.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        ListaDePlayLists.setFont(new java.awt.Font("Arial Black", 0, 20)); // NOI18N
         ListaDePlayLists.setForeground(new java.awt.Color(0, 0, 51));
         ListaDePlayLists.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "#", "Nombre de PlayList", "# Canciones"
+                "#", "Título de PlayList", "# Canciones"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -135,9 +144,9 @@ public class MainFrame extends javax.swing.JFrame {
             ListaDePlayLists.getColumnModel().getColumn(0).setResizable(false);
             ListaDePlayLists.getColumnModel().getColumn(0).setPreferredWidth(75);
             ListaDePlayLists.getColumnModel().getColumn(1).setResizable(false);
-            ListaDePlayLists.getColumnModel().getColumn(1).setPreferredWidth(500);
+            ListaDePlayLists.getColumnModel().getColumn(1).setPreferredWidth(400);
             ListaDePlayLists.getColumnModel().getColumn(2).setResizable(false);
-            ListaDePlayLists.getColumnModel().getColumn(2).setPreferredWidth(600);
+            ListaDePlayLists.getColumnModel().getColumn(2).setPreferredWidth(200);
         }
 
         PanelListaDePlayLists.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 580, 380));
@@ -146,15 +155,103 @@ public class MainFrame extends javax.swing.JFrame {
 
         PanelListaDeCanciones.setBackground(new java.awt.Color(255, 255, 255));
         PanelListaDeCanciones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jScrollPane2.setOpaque(false);
+
+        ListaDeCanciones.setBackground(new java.awt.Color(255, 255, 255));
+        ListaDeCanciones.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        ListaDeCanciones.setForeground(new java.awt.Color(0, 0, 51));
+        ListaDeCanciones.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "#", "Nombre de canción", "Fecha de lanzamiento", "Duración"
+            }
+        ));
+        ListaDeCanciones.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        ListaDeCanciones.setFillsViewportHeight(true);
+        ListaDeCanciones.setFocusable(false);
+        ListaDeCanciones.setGridColor(new java.awt.Color(0, 0, 0));
+        ListaDeCanciones.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        ListaDeCanciones.setRowHeight(50);
+        ListaDeCanciones.setRowSelectionAllowed(false);
+        ListaDeCanciones.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        ListaDeCanciones.setShowGrid(true);
+        ListaDeCanciones.setShowVerticalLines(false);
+        ListaDeCanciones.setSurrendersFocusOnKeystroke(true);
+        ListaDeCanciones.getTableHeader().setResizingAllowed(false);
+        ListaDeCanciones.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(ListaDeCanciones);
+        if (ListaDeCanciones.getColumnModel().getColumnCount() > 0) {
+            ListaDeCanciones.getColumnModel().getColumn(0).setResizable(false);
+            ListaDeCanciones.getColumnModel().getColumn(0).setPreferredWidth(75);
+            ListaDeCanciones.getColumnModel().getColumn(1).setResizable(false);
+            ListaDeCanciones.getColumnModel().getColumn(1).setPreferredWidth(400);
+            ListaDeCanciones.getColumnModel().getColumn(2).setResizable(false);
+            ListaDeCanciones.getColumnModel().getColumn(2).setPreferredWidth(200);
+            ListaDeCanciones.getColumnModel().getColumn(3).setResizable(false);
+        }
+
+        PanelListaDeCanciones.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 580, 330));
+
+        jRadioButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jRadioButton1.setForeground(new java.awt.Color(0, 0, 0));
+        jRadioButton1.setText("Debug");
+        jRadioButton1.setBorder(null);
+        jRadioButton1.setContentAreaFilled(false);
+        jRadioButton1.setFocusPainted(false);
+        jRadioButton1.setFocusable(false);
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
+        PanelListaDeCanciones.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 25, -1, -1));
+
+        jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBox1.setForeground(new java.awt.Color(0, 0, 0));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ordenar por nombre", "Ordenar por fecha", "Ordenar por duración" }));
+        jComboBox1.setBorder(null);
+        jComboBox1.setFocusable(false);
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+        PanelListaDeCanciones.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, 170, -1));
+
         getContentPane().add(PanelListaDeCanciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 600, 400));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void OpcionPlayListsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OpcionPlayListsMouseClicked
+    
+    public void actualizarVistaListaPlayList(Playlist[] playlists){
         PanelListaDeCanciones.setVisible(false);
         PanelListaDePlayLists.setVisible(true);
-        ListaDePlayLists.clearSelection();
+        TituloDePanel.setText("  Mis Playlist");
+        ElementosDeLista.setText(playlistsDeEjemplo.length+" listas de reprodución");
+        DefaultTableModel modelo=(DefaultTableModel)ListaDePlayLists.getModel();
+        modelo.setRowCount(0);
+        for (int i = 0; i < playlists.length; i++) {
+            Object[] infoDePlaylist={
+                i,playlists[i].getTitulo(),
+                playlists[i].tamanio()+" canciones"
+            };
+            modelo.addRow(infoDePlaylist);
+        }
+        ListaDePlayLists.setModel(modelo);
+    }
+    
+    public void actualizarVistaListaCanciones(Playlist playlist){
+        PanelListaDeCanciones.setVisible(true);
+        PanelListaDePlayLists.setVisible(false);
+        TituloDePanel.setText("  Mis Playlist");
+        ElementosDeLista.setText(playlistsDeEjemplo.length+" listas de reprodución");
+    }
+    
+    private void OpcionPlayListsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OpcionPlayListsMouseClicked
+        actualizarVistaListaPlayList(playlistsDeEjemplo);
     }//GEN-LAST:event_OpcionPlayListsMouseClicked
 
     private void OpcionPlayListsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OpcionPlayListsMouseEntered
@@ -169,6 +266,14 @@ public class MainFrame extends javax.swing.JFrame {
         OpcionTitulo.setForeground(Color.WHITE);
         OpcionPlayLists.setOpaque(false);
     }//GEN-LAST:event_OpcionPlayListsMouseExited
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -208,6 +313,7 @@ public class MainFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ElementosDeLista;
     private javax.swing.JLabel LOGO;
+    private javax.swing.JTable ListaDeCanciones;
     private javax.swing.JTable ListaDePlayLists;
     private javax.swing.JPanel OpcionPlayLists;
     private javax.swing.JLabel OpcionTitulo;
@@ -215,6 +321,9 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel PanelListaDeCanciones;
     private javax.swing.JPanel PanelListaDePlayLists;
     private javax.swing.JLabel TituloDePanel;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }

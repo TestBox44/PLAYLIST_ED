@@ -1,10 +1,17 @@
 package playlist_ed;
 public class Playlist {
     private Cancion[] listacanciones;
+    private String titulo;
     private int tamanio=0;
 
     public Playlist() {
         listacanciones=new Cancion[0];
+        titulo="";
+    }
+
+    public Playlist(String titulo) {
+        listacanciones=new Cancion[0];
+        this.titulo = titulo;
     }
     
     public void agregarCancion(Cancion nuevacancion){
@@ -48,6 +55,14 @@ public class Playlist {
     public void vaciarLista(){
         listacanciones=new Cancion[0];
         tamanio=0;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
     
     public void mostrarCanciones(){

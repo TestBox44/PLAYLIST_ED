@@ -7,7 +7,7 @@ import java.util.Date;
 public class PLAYLIST_ED {
 
     public static void main(String[] args) throws ParseException {
-        
+        /*
         SimpleDateFormat format1 = new SimpleDateFormat("MM/dd/yyyy");
         
         Playlist p1=new Playlist();
@@ -21,7 +21,8 @@ public class PLAYLIST_ED {
         p1.agregarCancion(c2);
         p1.agregarCancion(c3);
         
-        p1.mostrarCanciones();
+        p1.mostrarCanciones();*/
+        
         MainFrame main=new MainFrame();
         main.setVisible(true);
     }

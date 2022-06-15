@@ -65,6 +65,15 @@ public class Playlist {
         this.titulo = titulo;
     }
     
+    public Cancion obtenerCancion(int index){
+        if(index>=0&&index<tamanio){
+            return listacanciones[index];
+        }else{
+            System.out.println("El indice de cancion esta fuera de los limites...");
+            return null;
+        }
+    }
+    
     public void mostrarCanciones(){
         if(tamanio>0){
             for (int i = 0; i < tamanio; i++) {

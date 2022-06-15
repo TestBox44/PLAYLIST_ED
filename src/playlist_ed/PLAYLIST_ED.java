@@ -22,6 +22,8 @@ public class PLAYLIST_ED {
         p1.agregarCancion(c3);
         
         p1.mostrarCanciones();
+        MainFrame main=new MainFrame();
+        main.setVisible(true);
     }
     
 }

@@ -1,6 +1,7 @@
 package playlist_ed;
 
 import java.awt.Color;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.BorderFactory;
 import javax.swing.UIManager;
@@ -32,12 +33,12 @@ public class MainFrame extends javax.swing.JFrame {
         playlistsDeEjemplo[0]=new Playlist("PlayList1");
         playlistsDeEjemplo[1]=new Playlist("PlayList2");
         playlistsDeEjemplo[2]=new Playlist("PlayList3");
-        Date d1 = new Date("04/02/2010");
-        Cancion c1=new Cancion("Niña Bonita",10.0f,d1);
-        Date d2 = new Date("01/03/2005");
-        Cancion c2=new Cancion("Cholo soy",6.0f,d2);
-        Date d3 = new Date("10/11/2020");
-        Cancion c3=new Cancion("That's Life",1.0f,d3);
+        Date d1 = new Date("04/02/2007");
+        Cancion c1=new Cancion("Niña Bonita",3.30f,d1);
+        Date d2 = new Date("01/03/1999");
+        Cancion c2=new Cancion("Cholo soy",3.50f,d2);
+        Date d3 = new Date("10/11/1980");
+        Cancion c3=new Cancion("That's Life",4.10f,d3);
         playlistsDeEjemplo[0].agregarCancion(c1);
         playlistsDeEjemplo[0].agregarCancion(c2);
         playlistsDeEjemplo[0].agregarCancion(c3);
@@ -268,14 +269,14 @@ public class MainFrame extends javax.swing.JFrame {
         PanelListaDeCanciones.setVisible(true);
         PanelListaDePlayLists.setVisible(false);
         TituloDePanel.setText("  "+playlist.getTitulo());
-        ElementosDeLista.setText(playlistsDeEjemplo.length+" canciones");
+        ElementosDeLista.setText(playlist.tamanio()+" canciones");
         DefaultTableModel modelo=(DefaultTableModel)ListaDeCanciones.getModel();
         modelo.setRowCount(0);
         for (int i = 0; i < playlist.tamanio(); i++) {
             Cancion actual=playlist.obtenerCancion(i);
             Object[] infoDePlaylist={
                 i,actual.getNombre(),
-                actual.getFecha().getYear(),
+                new SimpleDateFormat("dd/MM/YY").format(actual.getFecha()),
                 actual.getDuracion()
             };
             modelo.addRow(infoDePlaylist);

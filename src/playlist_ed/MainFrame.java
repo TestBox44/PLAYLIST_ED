@@ -36,15 +36,24 @@ public class MainFrame extends javax.swing.JFrame {
         playlistsDeEjemplo[0]=new Playlist("PlayList1");
         playlistsDeEjemplo[1]=new Playlist("PlayList2");
         playlistsDeEjemplo[2]=new Playlist("PlayList3");
-        Date d1 = new Date("04/02/2007");
-        Cancion c1=new Cancion("Niña Bonita",3.30f,d1);
-        Date d2 = new Date("01/03/1999");
-        Cancion c2=new Cancion("Cholo soy",3.50f,d2);
-        Date d3 = new Date("10/11/1980");
-        Cancion c3=new Cancion("That's Life",4.10f,d3);
+        Cancion c1=new Cancion("That's Life",187f,new Date("18/11/1966"));
+        Cancion c2=new Cancion("Movimiento",231f,new Date("22/09/2017"));
+        Cancion c3=new Cancion("Dulce Melodía",229f,new Date("22/08/2006"));
+        Cancion c4=new Cancion("Come Together",259f,new Date("26/09/1969"));
+        Cancion c5=new Cancion("Another Brick in the Wall",191f,new Date("30/11/1979"));
+        Cancion c6=new Cancion("El problema",331f,new Date("15/10/2002"));
+        Cancion c7=new Cancion("One More Time",320f,new Date("13/11/2000"));
+        Cancion c8=new Cancion("Maquiavélico",285f,new Date("22/03/2012"));
+        Cancion c9=new Cancion("El amante",229f,new Date("20/01/2017"));
         playlistsDeEjemplo[0].agregarCancion(c1);
         playlistsDeEjemplo[0].agregarCancion(c2);
         playlistsDeEjemplo[0].agregarCancion(c3);
+        playlistsDeEjemplo[0].agregarCancion(c4);
+        playlistsDeEjemplo[0].agregarCancion(c5);
+        playlistsDeEjemplo[0].agregarCancion(c6);
+        playlistsDeEjemplo[0].agregarCancion(c7);
+        playlistsDeEjemplo[0].agregarCancion(c8);
+        playlistsDeEjemplo[0].agregarCancion(c9);
         actualizarVistaListaPlayList(playlistsDeEjemplo);   
     }
 
@@ -65,6 +74,7 @@ public class MainFrame extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         ListaDeCanciones = new javax.swing.JTable();
         TipoDeOrdenamiento = new javax.swing.JComboBox<>();
+        SentidoDeOrdenamiento = new javax.swing.JComboBox<>();
         PanelListaDePlayLists = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         ListaDePlayLists = new javax.swing.JTable();
@@ -180,6 +190,12 @@ public class MainFrame extends javax.swing.JFrame {
         });
         PanelListaDeCanciones.add(TipoDeOrdenamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, 170, -1));
 
+        SentidoDeOrdenamiento.setBackground(new java.awt.Color(255, 255, 255));
+        SentidoDeOrdenamiento.setForeground(new java.awt.Color(0, 0, 0));
+        SentidoDeOrdenamiento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Menor a Mayor", "Mayor a Menor" }));
+        SentidoDeOrdenamiento.setFocusable(false);
+        PanelListaDeCanciones.add(SentidoDeOrdenamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, 140, -1));
+
         getContentPane().add(PanelListaDeCanciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 600, 400));
 
         PanelListaDePlayLists.setBackground(new java.awt.Color(255, 255, 255));
@@ -273,7 +289,7 @@ public class MainFrame extends javax.swing.JFrame {
             Object[] infoDePlaylist={
                 i+1,actual.getNombre(),
                 new SimpleDateFormat("dd/MM/YYYY").format(actual.getFecha()),
-                actual.getDuracion()
+                String.format("%02d:%02d", (int)actual.getDuracion()/60, (int)actual.getDuracion()%60)
             };
             modelo.addRow(infoDePlaylist);
         }
@@ -304,15 +320,20 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ListaDePlayListsMouseClicked
 
     private void TipoDeOrdenamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TipoDeOrdenamientoActionPerformed
+        int sentido=0;
+        if(SentidoDeOrdenamiento.getSelectedIndex()==0)
+            sentido=1;
+        else
+            sentido=-1;
         switch(TipoDeOrdenamiento.getSelectedIndex()){
             case 0:
-                playlistsDeEjemplo[ListaDePlayLists.getSelectedRow()].ordenarXNombre();
+                playlistsDeEjemplo[ListaDePlayLists.getSelectedRow()].ordenarXNombre(sentido);
                 break;
             case 1:
-                playlistsDeEjemplo[ListaDePlayLists.getSelectedRow()].ordenarXFecha();
+                playlistsDeEjemplo[ListaDePlayLists.getSelectedRow()].ordenarXFecha(sentido);
                 break;
             case 2:
-                playlistsDeEjemplo[ListaDePlayLists.getSelectedRow()].ordenarXDuracion();
+                playlistsDeEjemplo[ListaDePlayLists.getSelectedRow()].ordenarXDuracion(sentido);
                 break;
         }
         actualizarVistaListaCanciones(playlistsDeEjemplo[ListaDePlayLists.getSelectedRow()]);
@@ -363,6 +384,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel PanelDeNavegacion;
     private javax.swing.JPanel PanelListaDeCanciones;
     private javax.swing.JPanel PanelListaDePlayLists;
+    private javax.swing.JComboBox<String> SentidoDeOrdenamiento;
     private javax.swing.JComboBox<String> TipoDeOrdenamiento;
     private javax.swing.JLabel TituloDePanel;
     private javax.swing.JScrollPane jScrollPane1;

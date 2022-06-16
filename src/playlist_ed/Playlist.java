@@ -85,32 +85,33 @@ public class Playlist {
         }
     }
     
-    public void ordenarXNombre(){
+    public void ordenarXNombre(int sentido){
         Cancion aux;
         for (int i = 1; i < tamanio; i++) {
             aux = listacanciones[i];
-            for (int j = i-1; j >=0 && listacanciones[j].getNombre().compareTo(aux.getNombre())>0; j--) {
+            for (int j = i-1; j >=0 && listacanciones[j].getNombre().compareTo(aux.getNombre())*sentido>0; j--) {
                 listacanciones[j+1]=listacanciones[j];
                 listacanciones[j]=aux;
             }
+            
         }
     }
-    public void ordenarXDuracion(){
+    public void ordenarXDuracion(int sentido){
         Cancion aux;
         for (int i = 1; i < tamanio; i++) {
             aux = listacanciones[i];
-            for (int j = i-1; j >=0 && listacanciones[j].getDuracion()>aux.getDuracion(); j--) {
+            for (int j = i-1; j >=0 && Float.compare(listacanciones[j].getDuracion(), aux.getDuracion())*sentido>0; j--) {
                 listacanciones[j+1]=listacanciones[j];
                 listacanciones[j]=aux;
             }
         }
     }
     
-    public void ordenarXFecha(){
+    public void ordenarXFecha(int sentido){
         Cancion aux;
         for (int i = 1; i < tamanio; i++) {
             aux = listacanciones[i];
-            for (int j = i-1; j >=0 && listacanciones[j].getFecha().compareTo(aux.getFecha())>0; j--) {
+            for (int j = i-1; j >=0 && listacanciones[j].getFecha().compareTo(aux.getFecha())*sentido>0; j--) {
                 listacanciones[j+1]=listacanciones[j];
                 listacanciones[j]=aux;
             }

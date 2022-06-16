@@ -7,7 +7,7 @@ import java.util.Date;
         
 public class Cancion {
     private String nombre; //nombre de cacion
-    private float duracion; //duracion de la cancion
+    private float duracion; //duracion de la cancion en segundos
     private Date fecha; //fecha de publicacion de la cancion
 
     public Cancion(String nombre, float duracion, Date fecha) {
